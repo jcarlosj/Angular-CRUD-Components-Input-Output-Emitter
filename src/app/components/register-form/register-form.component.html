@@ -1,1 +1,9 @@
-<p>register-form works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" type="text" />
+
+  <label for="email">Email:</label>
+  <input id="email" formControlName="email" type="email" />
+
+  <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+</form>
