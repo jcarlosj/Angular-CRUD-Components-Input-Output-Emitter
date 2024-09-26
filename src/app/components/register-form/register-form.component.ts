@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './register-form.component.css'
 })
 export class RegisterFormComponent {
+  @Output() formSubmitted = new EventEmitter<{ name: string; email: string }>();
   registerForm: FormGroup;
 
   constructor( private fb: FormBuilder ) {
@@ -23,6 +24,7 @@ export class RegisterFormComponent {
       const formData = this.registerForm.value;
       // Aquí enviarías los datos al componente de la lista
       console.log( formData );
+      this.formSubmitted.emit( formData );
     }
   }
 }

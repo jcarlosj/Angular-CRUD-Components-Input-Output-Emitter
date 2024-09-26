@@ -1,1 +1,7 @@
-<p>records-list works!</p>
+<ul>
+  @for (record of records; track $index) {
+    <li>
+      {{ record.name }} ({{ record.email }})
+    </li>
+  }
+</ul>

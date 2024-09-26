@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-records-list',
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './records-list.component.css'
 })
 export class RecordsListComponent {
+  @Input() records: Array<{ name: string; email: string }> = [];
 
+  addRecord(record: { name: string; email: string }) {
+    this.records.push(record);
+  }
 }
