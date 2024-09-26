@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-records-list',
@@ -9,8 +9,13 @@ import { Component, Input } from '@angular/core';
 })
 export class RecordsListComponent {
   @Input() records: Array<{ name: string; email: string }> = [];
+  @Output() recordSelected = new EventEmitter<{ name: string; email: string }>();
 
   addRecord(record: { name: string; email: string }) {
     this.records.push(record);
+  }
+
+  selectRecord(record: { name: string; email: string }) {
+    this.recordSelected.emit(record);
   }
 }

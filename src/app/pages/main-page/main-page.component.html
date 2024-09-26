@@ -1,2 +1,9 @@
-<app-register-form (formSubmitted)="addNewRecord($event)"></app-register-form>
-<app-records-list [records]="recordsList"></app-records-list>
+<app-register-form
+  (formSubmitted)="addNewRecord($event)"
+  [record]="selectedRecord">
+</app-register-form>
+
+<app-records-list
+  [records]="recordsList"
+  (recordSelected)="loadRecordToForm($event)">
+</app-records-list>

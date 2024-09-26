@@ -2,6 +2,7 @@
   @for (record of records; track $index) {
     <li>
       {{ record.name }} ({{ record.email }})
+      <a href="#" (click)="selectRecord(record)">Editar</a>
     </li>
   }
 </ul>

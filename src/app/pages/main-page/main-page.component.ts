@@ -14,9 +14,22 @@ import { RecordsListComponent } from '../../components/records-list/records-list
 })
 export class MainPageComponent {
   recordsList: Array<{ name: string; email: string }> = [];
+  selectedRecord: { name: string; email: string } | null = null;
 
   addNewRecord(record: { name: string; email: string }) {
-    console.log(record);
-    this.recordsList.push( record );
+    // Si es un registro nuevo o si es una actualización
+    if (this.selectedRecord) {
+      const index = this.recordsList.findIndex(r => r.email === this.selectedRecord!.email);
+      if (index !== -1) {
+        this.recordsList[index] = record; // Actualiza el registro
+      }
+    } else {
+      this.recordsList.push(record); // Agrega nuevo registro
+    }
+    this.selectedRecord = null; // Limpia el registro seleccionado después de la operación
+  }
+
+  loadRecordToForm(record: { name: string; email: string }) {
+    this.selectedRecord = record;
   }
 }
