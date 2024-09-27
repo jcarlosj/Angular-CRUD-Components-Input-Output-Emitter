@@ -10,12 +10,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class RecordsListComponent {
   @Input() records: Array<{ name: string; email: string }> = [];
   @Output() recordSelected = new EventEmitter<{ name: string; email: string }>();
-
-  addRecord(record: { name: string; email: string }) {
-    this.records.push(record);
-  }
+  @Output() recordDeleted = new EventEmitter<{ name: string; email: string }>();
 
   selectRecord(record: { name: string; email: string }) {
     this.recordSelected.emit(record);
+  }
+
+  deleteRecord(record: { name: string; email: string }) {
+    this.recordDeleted.emit(record); // Emitir evento para eliminar registro
   }
 }

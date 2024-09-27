@@ -32,4 +32,12 @@ export class MainPageComponent {
   loadRecordToForm(record: { name: string; email: string }) {
     this.selectedRecord = record;
   }
+
+  deleteRecordFromList(record: { name: string; email: string }) {
+    console.log('eliminarrrr')
+
+    console.log('Antes de eliminar:', this.recordsList);
+    this.recordsList = this.recordsList.filter(r => r !== record); // Eliminar el registro
+    console.log('Después de eliminar:', this.recordsList);
+  }
 }
