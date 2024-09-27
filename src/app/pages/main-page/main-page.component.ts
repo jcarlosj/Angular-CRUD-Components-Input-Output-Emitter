@@ -17,6 +17,15 @@ export class MainPageComponent {
   selectedRecord: { id: number; name: string; email: string } | null = null;
 
   addNewRecord(record: { id: number; name: string; email: string }) {
+
+  // Validar si ya existe un registro con el mismo correo
+  const emailExists = this.recordsList.some(r => r.email === record.email && r.id !== record.id);
+    console.log( emailExists );
+  if (emailExists) {
+    alert('Este correo ya está registrado. Por favor ingrese otro correo.');
+    return;
+  }
+
     // Si es un registro nuevo o si es una actualización
     if (this.selectedRecord) {
       const index = this.recordsList.findIndex(r => r.email === this.selectedRecord!.email);
