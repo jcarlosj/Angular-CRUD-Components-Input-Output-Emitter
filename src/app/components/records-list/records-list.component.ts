@@ -8,15 +8,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './records-list.component.css'
 })
 export class RecordsListComponent {
-  @Input() records: Array<{ name: string; email: string }> = [];
-  @Output() recordSelected = new EventEmitter<{ name: string; email: string }>();
-  @Output() recordDeleted = new EventEmitter<{ name: string; email: string }>();
+  @Input() records: Array<{ id: number; name: string; email: string }> = [];
+  @Output() recordSelected = new EventEmitter<{ id: number; name: string; email: string }>();
+  @Output() recordDeleted = new EventEmitter<{ id: number; name: string; email: string }>();
 
-  selectRecord(record: { name: string; email: string }) {
+  selectRecord(record: { id: number; name: string; email: string }) {
     this.recordSelected.emit(record);
   }
 
-  deleteRecord(record: { name: string; email: string }) {
+  deleteRecord(record: { id: number; name: string; email: string }) {
     this.recordDeleted.emit(record); // Emitir evento para eliminar registro
   }
 }

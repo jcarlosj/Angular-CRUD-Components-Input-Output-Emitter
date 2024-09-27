@@ -9,8 +9,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './register-form.component.css'
 })
 export class RegisterFormComponent {
-  @Output() formSubmitted = new EventEmitter<{ name: string; email: string }>();
-  @Input() record: { name: string; email: string } | null = null;
+  @Output() formSubmitted = new EventEmitter<{ id: number; name: string; email: string }>();
+  @Input() record: { id: number; name: string; email: string } | null = null;
   registerForm: FormGroup;
 
   constructor( private fb: FormBuilder ) {
@@ -28,10 +28,19 @@ export class RegisterFormComponent {
 
   onSubmit() {
     if ( this.registerForm.valid ) {
-      const formData = this.registerForm.value;
-      // Aquí enviarías los datos al componente de la lista
+      const formData = {
+        id: this.record?.id || Date.now(), // Generar el ID si no existe
+        ...this.registerForm.value
+      };
+
       console.log( formData );
       this.formSubmitted.emit( formData );
+      this.resetForm();  // Limpiar el formulario después de crear o actualizar
     }
+  }
+
+  // Método para resetear los valores del formulario
+  resetForm() {
+    this.registerForm.reset();
   }
 }

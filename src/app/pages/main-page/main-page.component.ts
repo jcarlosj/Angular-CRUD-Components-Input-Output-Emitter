@@ -13,10 +13,10 @@ import { RecordsListComponent } from '../../components/records-list/records-list
   styleUrl: './main-page.component.css'
 })
 export class MainPageComponent {
-  recordsList: Array<{ name: string; email: string }> = [];
-  selectedRecord: { name: string; email: string } | null = null;
+  recordsList: Array<{ id: number; name: string; email: string }> = [];
+  selectedRecord: { id: number; name: string; email: string } | null = null;
 
-  addNewRecord(record: { name: string; email: string }) {
+  addNewRecord(record: { id: number; name: string; email: string }) {
     // Si es un registro nuevo o si es una actualización
     if (this.selectedRecord) {
       const index = this.recordsList.findIndex(r => r.email === this.selectedRecord!.email);
@@ -29,13 +29,11 @@ export class MainPageComponent {
     this.selectedRecord = null; // Limpia el registro seleccionado después de la operación
   }
 
-  loadRecordToForm(record: { name: string; email: string }) {
+  loadRecordToForm(record: { id: number; name: string; email: string }) {
     this.selectedRecord = record;
   }
 
-  deleteRecordFromList(record: { name: string; email: string }) {
-    console.log('eliminarrrr')
-
+  deleteRecordFromList(record: { id: number; name: string; email: string }) {
     console.log('Antes de eliminar:', this.recordsList);
     this.recordsList = this.recordsList.filter(r => r !== record); // Eliminar el registro
     console.log('Después de eliminar:', this.recordsList);
